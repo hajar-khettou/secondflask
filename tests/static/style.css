@@ -1,0 +1,95 @@
+/* General styles */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #212020; /* Light blue background */
+  color: #333; /* Dark text for better readability */
+}
+/* Style for the page title */
+h1 {
+  font-weight: bold; /* Makes the text bold */
+  text-align: center; /* Centers the text horizontally */
+  margin-top: 0; /* Removes top margin */
+  margin-bottom: 1rem; /* Adds some space below the title */
+  color: #e8f48c ; /* Dark text color for readability */
+  padding-top: 20px; /* Space from the top of the container */
+}
+
+
+.container {
+  padding-top: 20px;
+}
+
+/* ROCA interface image styles */
+.roca-image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Rounded corners for the image */
+}
+
+/* Chatbot styles */
+#chat-container {
+  background-color: #E1F1FF; /* Light steel blue background */
+  border: 2px solid #B0C4DE; /* Steel blue border */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#chat-messages {
+  background-color: white; /* White background for the messages area */
+  border-radius: 10px;
+  padding: 10px;
+  height: 300px; /* Or adjust to the height you prefer */
+  overflow-y: auto; /* Scrollbar for overflow content */
+  margin-bottom: 10px; /* Space below messages before input box */
+}
+
+/* Chat input box styles */
+.chat-input-area {
+  display: flex;
+}
+
+#chat-input {
+  flex-grow: 1; /* Make input take up available horizontal space */
+  border-radius: 20px; /* Rounded corners for input field */
+  border: 1px solid #B0C4DE; /* Steel blue border */
+  padding: 10px;
+  margin-right: 8px; /* Space between input field and send button */
+}
+
+#send-button {
+  background-color: #B0C4DE; /* Steel blue background for the send button */
+  color: white; /* White text */
+  border: none;
+  border-radius: 20px; /* Rounded corners for button */
+  padding: 10px 20px;
+}
+
+/* Message bubble styles */
+.chat-message {
+  background-color: #B0C4DE; /* Steel blue background for chat bubbles */
+  color: white; /* White text */
+  border-radius: 18px;
+  padding: 10px 15px;
+  margin-bottom: 10px; /* Space between messages */
+  max-width: 80%; /* Maximum width for bubbles */
+  word-wrap: break-word; /* Ensures text wraps inside bubble */
+}
+
+.user-message {
+  align-self: flex-end; /* Aligns user messages to the right */
+}
+
+.bot-message {
+  align-self: flex-start; /* Aligns bot messages to the left */
+}
+
+/* Responsive adjustments (optional) */
+@media (max-width: 768px) {
+  .roca-image-container, #chat-container {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
