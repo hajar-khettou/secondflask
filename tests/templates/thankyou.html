@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You For Joining</title>
+    <link href="static/thankyou.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You For Joining Our Chatbot Application!</h1>
+        <form action="{{ url_for('first2') }}" method="post">
+            <input type="submit" value="Go to home page">
+        </form>
+    </div>
+</body>
+</html>

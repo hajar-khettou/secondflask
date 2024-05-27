@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="./recorder.js"></script> -->
+    <title>Traveler Chatbot</title>
+<style>
+
+/* Animation keyframes for text zoom effect */
+@keyframes zoomInText {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Style for Rocayists Assistant heading */
+h5 {
+    font-family: 'Roboto', sans-serif; /* Sets the font family to Roboto */
+    font-size: 40px; /* Increases the font size */
+    font-weight: 900; /* Makes the font bold */
+    color: #C3FF93; /* Sets a darker color for better readability */
+    animation: zoomInText 0.5s ease-out forwards; /* Applies the zoom animation */
+}
+
+/* Main chat window styles */
+.chat-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 7000;
+    opacity: 0;
+    transform: scale(0.9); /* Start smaller */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for both transform and opacity */
+}
+
+/* Styling to make the chatbot immediately visible and interactive */
+.chat-window.show {
+    opacity: 1;
+    transform: scale(1); /* Scale to normal size */
+}
+
+/* Header with a smoother gradient and interactive feel */
+.chatbot-header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding:5px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px; /* Slightly larger for better readability */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+.close-chatbot {
+    cursor: pointer;
+    font-size: 24px; /* Larger for easier interaction */
+    background: none;
+    border: none;
+    color: white;
+    transition: color 0.2s; /* Smooth color transition for hover effect */
+}
+
+.close-chatbot:hover {
+    color: #ff6666; /* Red color on hover for a feedback */
+}
+
+/* Chat messages area with improved visibility and spacing */
+.chat-messages {
+    padding: 20px;
+    flex-grow: 1; /* Make chat messages area flexible */
+    overflow-y: auto;
+    background: #f5f5f5; /* Lighter background for contrast */
+}
+
+.chat-message {
+    margin: 10px 0;
+    padding: 10px 15px; /* More padding for better readability */
+    background-color: #fff;
+    border-radius: 10px; /* Rounded borders */
+    color: #333;
+    font-size: 16px; /* Larger font size */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.user-message {
+    background-color: #4a76a8; /* Change color for better contrast */
+    color: white;
+    text-align: right;
+}
+
+.bot-message {
+    background-color: #778beb;
+    text-align: left;
+}
+
+.chatbot-input-area {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center align the items vertically */
+    padding: 20px; /* Padding inside the container */
+    width: 100%; /* Full width */
+    background: #e9ecef; /* Light gray background for distinction */
+    border-top: 1px solid #ccc; /* Subtle top border */
+}
+
+#chatbot-input {
+    flex-grow: 1; /* Allows the input to take up available space */
+    border: 1px solid #6a11cb; /* Stylish border color */
+    padding: 10px; /* Uniform padding */
+    margin-right: 10px; /* Space between input and button */
+    border-radius: 15px; /* Rounded borders */
+    outline: none; /* Remove the outline to prevent default browser styles */
+}
+
+#chatbot-input:focus {
+    border-color: #4a76a8; /* Highlight color when input is focused */
+}
+
+#chatbot-send-button {
+    padding: 8px 20px; /* Padding inside the button */
+    border-radius: 20px; /* Rounded corners for the button */
+    background-color: #6a11cb; /* Background color of the button */
+    color: white; /* Text color inside the button */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.2s ease; /* Smooth transition for background color change */
+}
+
+#chatbot-send-button:hover {
+    background-color: #5041b2; /* Slightly darker on hover for visual feedback */
+}
+
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+    .chat-window {
+        right: 0;
+        left: 0; /* Full width on smaller devices */
+    }
+}
+</style>
+
+
+</head>
+
+<body>
+    <div class='mainHeader' id='mainHeader'>
+    <h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;">
+        ASSISTANT BOT
+    </h1>
+    </div>
+   <div class="container">
+
+   <div id="chatbot-window" class="chat-window show">
+    <!-- Chat header -->
+    <div id="chatbot-header" class="chatbot-header">
+        <img src="static/images/robot.png" width="70px" height="75px" alt="robot">
+        <h5>Rocayists Assistant</h5>
+        <button id="close-chatbot" class="close-chatbot">&times;</button>
+    </div>
+    <!-- Chat messages area -->
+    <div id="chat-messages" class="chat-messages">
+        <!-- Messages will be dynamically added here -->
+    </div>
+    <!-- Chat input area -->
+    <div class="chatbot-input-area">
+        <input type="text" id="chatbot-input" placeholder="Type your message...">
+        <button id="chatbot-send-button">Send</button>
+    </div>
+</div>
+   </div>
+<script>
+ $(document).ready(function() {
+    // Send message when the 'Send' button is clicked
+    $('#chatbot-send-button').click(function() {
+        var message = $('#chatbot-input').val().trim();
+        if (message) {
+            $('#chat-messages').append('<div class="chat-message user-message">' + message + '</div>');
+            $('#chatbot-input').val('');
+            sendMessageToRasa(message);
+        }
+    });
+
+    // Function to send the message to Rasa and handle the response
+    function sendMessageToRasa(message) {
+        $.ajax({
+            url: 'http://localhost:5005/webhooks/rest/webhook',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ sender: 'user', message: message }),
+            success: function(response) {
+                if (response && response.length > 0) {
+                    $('#chat-messages').append('<div class="chat-message bot-message">' + response[0].text + '</div>');
+                    $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('An error occurred:', error);
+            }
+        });
+    }
+
+    // Close chatbot
+    $('#close-chatbot').click(function() {
+        $('#chatbot-window').removeClass('show').addClass('hide');
+    });
+});
+
+
+
+</script>
+</body>
+</html>

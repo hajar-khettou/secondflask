@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: flex; /* Apply Flexbox */
+            flex-direction: column; /* Stack child elements vertically */
+            align-items: center; /* Center-align children */
+
+            background: #CDE8E5;
+            border: 2px solid #007bff; /* Thicker border for the container */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            padding: 60px;
+            margin-top: 50px;
+            margin-left: 360px;
+            margin-right: 50px;
+            max-width: 600px;
+        }
+        h1 {
+            color: black;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid black; /* Border for the entire table */
+            border-radius: 15px; /* Increased border-radius for rounded corners */
+            margin-bottom: 20px; /* Added margin to separate table from button */
+        }
+        th, td {
+            padding: 12px; /* Increased padding for larger text */
+            text-align: left;
+            border: 2px solid black; /* Right border for each cell */
+            font-size: 16px; /* Larger font size */
+        }
+        th {
+            background-color: #2A629A;
+            color: white;
+            border-top: none; /* No top border for header to merge with table border */
+        }
+        a {
+            display: block; /* Make link block to fill width for centering */
+            width: fit-content; /* Make width as per content */
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #2A629A;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            border: 2px solid #0056b3; /* Stylish blue border */
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        a:hover {
+            background-color: #0056b3;
+            border-color: #004080; /* Darker border on hover */
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Reservation Details</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{ reservation.name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ reservation.email }}</td>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td>{{ reservation.department }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ reservation.category }}</td>
+            </tr>
+            <tr>
+                <th>Software</th>
+                <td>{{ reservation.software }}</td>
+            </tr>
+            <tr>
+                <th>Hardware</th>
+                <td>{{ reservation.hardware }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ reservation.description }}</td>
+            </tr>
+            <tr>
+                <th>Response</th>
+                <td>{{ reservation.response or "No response yet" }}</td>
+            </tr>
+        </table>
+        <a href="{{ url_for('firstp') }}">Back to Home</a>
+    </div>
+</body>
+</html>

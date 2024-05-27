@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 10px 0;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Reservations Dashboard</h1>
+<ul>
+    {% for reservation in reservations %}
+    <li>
+        <a href="{{ url_for('view_reservation', reservation_id=reservation['id']) }}">
+            View Details of {{ reservation['name'] }}
+        </a>
+    </li>
+    {% else %}
+    <li>No reservations found.</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

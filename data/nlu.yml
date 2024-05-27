@@ -9,19 +9,11 @@ nlu:
     - hello there
     - good morning
     - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
     - good afternoon
 
 - intent: goodbye
   examples: |
-    - cu
     - good by
-    - cee you later
     - good night
     - bye
     - goodbye
@@ -49,39 +41,16 @@ nlu:
     - no way
     - not really
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
 
-- intent: mood_unhappy
+
+- intent: thank_you
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - thank you
+    - thanks
+    - thanks a lot
+    - appreciate it
+    - many thanks
+    - thank you so much
 
 - intent: bot_challenge
   examples: |
@@ -89,17 +58,53 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    
+
+- intent: inform_C4C
+  examples: |
+      - my c4c account is suspended
+      - I don't have the access to my c4c account
+      - tell me what to do when my c4c account is blocked 
+
+- intent: more_help
+  examples: |
+    - Yes, more help please
+    - Yes, I need more assistance
+    - More help
+    - Continue assisting me
+
+- intent: no_more_help
+  examples: |
+    - No, that's all
+    - I'm done thank you
+    - No more help needed
+    - That's it for now
 
 - intent: connection_challenge
   examples: |
-    - I have a connection problem?
-    - I can not connect to the server?
-    - I can't reach any connection?
+    - I have a connection problem
+    - I can not access to wifi 
+    - I can't reach any connection
     - my connection failed, what should I do?
 
 - intent: windows_acc
   examples: |
-    - My session has ended up
-    - I can't access to my account
-    - session failed 
+    - I am locked out of my account after too many unsuccessful login attempts
+    - I can't access to my windows account anymore
+    - I have Windows session Synchronization Problems 
 
+- intent: SAP_acc
+  examples: |
+    - my sap account is suspended 
+    - I can't access to my sap account 
+    - sap blocked what can I do ?  
+
+
+
+- intent: not_fallback
+  examples: |
+    - what's the weather today
+    - are you okay
+    - what are you doing
+    - can you be my friend 
+    - is it cold outside?

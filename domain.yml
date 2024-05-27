@@ -1,48 +1,119 @@
-and this is domain.yml version: "3.1"
+version: "3.1"
 
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
   - bot_challenge
   - connection_challenge
   - windows_acc
+  - thank_you
+  - more_help
+  - no_more_help
+  - affirm
+  - deny
+  - inform_C4C
+  - not_fallback
+  - SAP_acc
 
 
-actions:
-  - action_troubleshoot_wifi
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:\n"
+  utter_assist:
+    - text: "Hello, how can I help you?"
 
 
-  utter_did_that_help:
-  - text: "Did that help you?"
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_your_welcome:
+    - text: "You're welcome!"
+
+
+
+  utter_need_more_assist:
+    - text: "Do you need more help?"
+
+  utter_as_you_like:
+    - text: "As you like"
+
+  utter_provide_me_more_info:
+    - text: "Provide me more informations you're encountering so I can help you"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
+    - text: "I am a bot, powered by Rasa."
 
   utter_connection:
-    - text: "If your connection is not working you can try these few steps that I'll provide you:\n1. You can call Amine to fix this problem for you.\n2. Wait for server response."
+    - text: >
+        If you're experiencing a failed connection, whether it's related to a network, application, or database connection, there are several troubleshooting steps you can take to diagnose and potentially resolve the issue.
+        Here’s a structured guide you can follow:
 
+        1. Check Network Connection
+        Basic Checks: Ensure your device is connected to the internet. Try accessing a website or service you know works.
+        Wi-Fi/Ethernet: Check if your Wi-Fi or Ethernet connection is active. If you're on Wi-Fi, try switching to Ethernet or vice versa.
+
+        2. Restart Your Devices
+        Modem and Router: Restart your modem and router. This can resolve many common network issues.
+        Computer or Device: Restarting the device you're experiencing issues on can also help reset network configurations that may be causing the problem.
+
+        3. Check Server Status
+        If your connection issues are related to a specific service (like a database or an application server), check if the service is up and running. Many services have status pages online that provide real-time updates.
 
   utter_windows:
-  - text: "ask the admin and demand for autorisation"
+    - text: >
+        Here is a comprehensive guide to troubleshoot issues with unexpected Windows session terminations:
 
+        1. Check for Updates
+        Go to Settings → Update & Security → Windows Update and check for updates. Microsoft frequently releases updates to improve system stability and fix bugs.
+
+        2. Review Event Logs
+        Use the Event Viewer to check the system logs for any warnings or errors that may explain the session termination. Press Win + R, type `eventvwr.msc`, and press Enter. Look under Windows Logs → System.
+
+        3. System File Check
+        Corrupted system files can cause various issues. Open Command Prompt as Administrator and run the System File Checker:
+        ```
+        sfc /scannow
+        4. Synchronization Problems
+        Check your internet connection and Microsoft account settings. 
+        
+        This will scan all protected system files and replace corrupted files with a cached copy.
+
+  utter_c4c:
+    - text: >
+        If your SAP Cloud for Customer (C4C) account is blocked, you'll need to follow a few steps to try to regain access. Here's a general guideline on what to do:
+
+         1. Check Account Status
+         First, verify the reason your account is blocked. Common reasons might include failed login attempts, non-compliance with security policies, or expired credentials.
+         2. Reset Your Password
+         If the account lock is due to incorrect login attempts, you may need to reset your password. Usually, there’s an option on the login page for recovering or resetting your password. Follow those steps to see if it resolves the issue.
+         3. Contact System Administrator
+         If you cannot resolve the issue by yourself, or if it's related to policy or permission changes, contact your system administrator. System administrators can check the specific reasons for the account lock and can unlock your account if needed.
+         4. Review Security Policies
+         Review the security policies related to your SAP C4C account, as provided by your organization. Understanding these can help prevent future account lockouts.
+         5. Contact SAP Support
+         If your system administrator can't resolve the issue or if you are the admin and don't have access to higher-tier settings, contact SAP Support for assistance. Be ready to provide them with any relevant details or error messages you've encountered.
+
+  utter_SAP:
+    - text: >
+        To unblock your SAP account, please follow these steps:
+
+        Contact your SAP administrator: Your system's SAP administrator has the necessary permissions to unblock your account. Explain the situation and ask them to reactivate your account.
+
+        Verify your login information: Ensure you are using the correct login credentials (username and password). Sometimes, a typo can cause the account to be blocked.
+
+        Reset your password: If you have forgotten your password, try resetting it using the SAP password reset function. This option is usually available on the login screen.
+
+        Check security policies: Your account might be blocked due to security policies (e.g., too many failed login attempts). Inquire with your administrator about the security policies in place.
+
+        Use SAP tools: Some SAP tools allow users to unblock their own accounts by answering security questions or using other verification methods. Check if this option is available in your organization.
+
+        If you still encounter difficulties after following these steps, it is advisable to contact SAP technical support for further assistance.
+
+
+
+  utter_fallback:
+  - text: "I don't understand what you are saying. If you have a problem, you can book a ticket <a href='http://127.0.0.1:3000/ticket'>here</a>."
 
 
 session_config:

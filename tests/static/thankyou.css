@@ -1,0 +1,36 @@
+body {
+            font-family: Arial, sans-serif; /* Sets the font for the entire body */
+            background-color: #f4f4f4; /* Light grey background for softer look */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Use the full height of the viewport */
+        }
+        .container {
+            text-align: center; /* Center-aligns all content in the container */
+            background: white; /* White background for the content area */
+            padding: 40px; /* Padding around the content */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow around the container */
+            border-radius: 8px; /* Rounded corners */
+            width: 80%; /* Sets a max width for the container */
+            max-width: 600px; /* Maximum width of the container */
+        }
+        h1 {
+            color: #333; /* Dark grey color for the header */
+            margin-bottom: 20px; /* Space below the header */
+        }
+        input[type="submit"] {
+            font-size: 18px; /* Larger font size for readability */
+            color: white; /* White text color */
+            background-color: #007BFF; /* Bootstrap primary blue */
+            border: none;
+            padding: 10px 20px; /* Padding inside the button */
+            cursor: pointer; /* Cursor to indicate it's clickable */
+            border-radius: 5px; /* Rounded corners for the button */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }

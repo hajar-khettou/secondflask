@@ -1,18 +1,20 @@
-console.log("hello world!");
-
-
 $(document).ready(function() {
-    // Add event listener for the send button
-    $('#send-button').click(function() {
-        // Get the message from the input field
-        var message = $('#chat-input').val().trim();
 
-        // Check if the message is not empty
+    // Toggle the chat window display
+    $('#chat-widget-button').click(function() {
+        $('#chatbot-window').toggle();
+    });
+ $('#close-chatbot').click(function() {
+        $('#chatbot-window').hide();
+    });
+    // Send message when the 'Send' button is clicked
+    $('#chatbot-send-button').click(function() {
+        var message = $('#chatbot-input').val().trim();
         if (message) {
             // Append the message to the chat window
             $('#chat-messages').append('<div class="chat-message user-message">' + message + '</div>');
-            $('#chat-input').val(''); // Clear the input field
-
+            // Clear the input field after sending
+            $('#chatbot-input').val('');
             // Send the message to the Rasa server using AJAX
             sendMessageToRasa(message);
         }
@@ -45,9 +47,9 @@ $(document).ready(function() {
     }
 
     // Add event listener for the Enter key in the input field
-    $('#chat-input').on('keypress', function(e) {
+    $('#chatbot-input').on('keypress', function(e) {
         if (e.which === 13) { // Enter key
-            $('#send-button').click();
+            $('#chatbot-send-button').click();
             return false; // Prevent the default behavior of the Enter key
         }
     });

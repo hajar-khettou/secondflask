@@ -2,45 +2,110 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+- story: WiFi Troubleshooting Flow
   steps:
   - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-  - intent: windows_acc
-  - action: utter_windows
+  - action: utter_assist
+  - intent: connection_challenge
+  - action: utter_connection
+  - action: utter_need_more_assist
+  - intent: more_help
+  - action: utter_provide_me_more_info
+  - intent: not_fallback
+  - action: utter_fallback
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
 
 - story: WiFi Troubleshooting Flow
   steps:
+  - intent: greet
+  - action: utter_assist
   - intent: connection_challenge
   - action: utter_connection
-  - intent: affirm
-  - action: utter_happy
-  - intent: deny
-  - action: utter_goodbye
+  - action: utter_need_more_assist
+  - intent: no_more_help
+  - action: utter_as_you_like
+  - intent: not_fallback
+  - action: utter_fallback
+  - intent: thank_you
+  - action: utter_your_welcome
+
+
+- story: C4C Troubleshooting Flow
+  steps:
+  - intent: greet
+  - action: utter_assist
+  - intent: inform_C4C
+  - action: utter_c4c
+  - action: utter_need_more_assist
+  - intent: no_more_help
+  - action: utter_as_you_like
+  - intent: not_fallback
+  - action: utter_fallback
+  - intent: thank_you
+  - action: utter_your_welcome
+
+- story: C4C Troubleshooting Flow
+  steps:
+  - intent: greet
+  - action: utter_assist
+  - intent: inform_C4C
+  - action: utter_c4c
+  - action: utter_need_more_assist
+  - intent: more_help
+  - action: utter_provide_me_more_info
+  - intent: not_fallback
+  - action: utter_fallback
+
 
 - story: Direct Windows Account Issue Path
   steps:
+    - intent: greet
+    - action: utter_assist
     - intent: windows_acc
     - action: utter_windows
+    - action: utter_need_more_assist
+    - intent: more_help
+    - action: utter_provide_me_more_info
+    - intent: not_fallback
+    - action: utter_fallback
+
+- story: Direct Windows Account Issue Path
+  steps:
+    - intent: greet
+    - action: utter_assist
+    - intent: windows_acc
+    - action: utter_windows
+    - action: utter_need_more_assist
+    - intent: no_more_help
+    - action: utter_as_you_like
+    - intent: not_fallback
+    - action: utter_fallback
+    - intent: thank_you
+    - action: utter_your_welcome
+
+- story: sap account
+  steps:
+    - intent: greet
+    - action: utter_assist
+    - intent: SAP_acc
+    - action: utter_SAP
+    - action: utter_need_more_assist
+    - intent: more_help
+    - action: utter_provide_me_more_info
+    - intent: not_fallback
+    - action: utter_fallback
+
+
+- story: sap account
+  steps:
+    - intent: greet
+    - action: utter_assist
+    - intent: SAP_acc
+    - action: utter_SAP
+    - action: utter_need_more_assist
+    - intent: no_more_help
+    - action: utter_as_you_like
+    - intent: not_fallback
+    - action: utter_fallback
+    - intent: thank_you
+    - action: utter_your_welcome
