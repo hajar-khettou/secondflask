@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/firstp.css" rel="stylesheet">
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script>// scripts.js
+
+$(document).ready(function() {
+    // Automatically show the chatbot window when the page loads
+    $('#chatbot-window').addClass('show');
+
+    // Toggle the chatbot window display when the chatbot icon is clicked
+    $('#chatbot-icon').click(function() {
+        if ($('#chatbot-window').hasClass('show')) {
+            $('#chatbot-window').removeClass('show').addClass('hide');
+        } else {
+            $('#chatbot-window').removeClass('hide').addClass('show');
+        }
+    });
+});
+</script>
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+           <a class="navbar-brand" href="/">
+            <img src="static/images/roca-logo.png" alt="Roca Logo" height="40px" width="70px">
+        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ url_for('firstp') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('ticket') }}">Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('admin_login') }}">Dashboard</a>
+        </li>
+         <li class="nav-item">
+           <a class="nav-link"  href="{{ url_for('reservations_dashboard') }}">Responses</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="#services">About us</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link">
+            <i class="bi bi-person-circle" style="margin-left: 60px; font-size: 1.5em;"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container mt-4">
+        <div class="row no-gutters">
+        <!-- Carousel on the left -->
+        <div class="col-lg-12">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="static/images/b.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h5>Roca Bathrooms: Where Elegance Meets Innovation.</h5>
+        <p>Find your dream bath with us</p>
+         <p><a href="#" class="btn btn-warning mt-3"> Learn More </a></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="static/images/ba.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h5>From Vision to Reality</h5>
+        <p>we make it green blue white everything you desire</p>
+        <p><a href="#" class="btn btn-warning mt-3"> Learn More </a></p>
+      </div>
+    </div>
+        <div class="carousel-item">
+      <img src="static/images/dreambathh.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h5>Roca: The Art of Bathroom Perfection</h5>
+        <p><a href="#" class="btn btn-warning mt-3"> Learn More </a></p>
+      </div>
+    </div>
+        <div class="carousel-item">
+      <img src="static/images/dow.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h5>Transform Your Space with Roca</h5>
+         <p><a href="#" class="btn btn-warning mt-3"> Learn More </a></p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="static/images/usine.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <h5>Our amazing team</h5>
+        <p><a href="#" class="btn btn-warning mt-3"> Learn More </a></p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+        </div>
+   </div>
+   </div>
+  <div class="container">
+    <!-- Chat icon -->
+    <a href="javascript:void(0);" id="chat-widget-button" type="button" class="btn rounded-circle position-fixed" style="bottom: 20px; right: 20px;">
+        💬
+    </a>
+
+    <!-- Chat window -->
+    <div id="chatbot-window" class="chat-window" style="display: none;">
+        <!-- Chat header -->
+        <div id="chatbot-header" class="chatbot-header">
+            <h5>Roca's Assistant</h5>
+            <button id="close-chatbot" class="close-chatbot">&times;</button>
+        </div>
+
+        <!-- Chat messages area -->
+        <div id="chat-messages" class="chat-messages">
+            <!-- Messages will be dynamically added here -->
+        </div>
+
+        <!-- Chat input area -->
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Type your message...">
+            <button id="chatbot-send-button">Send</button>
+        </div>
+    </div>
+</div>
+
+   <!--about section-->
+   <section id="about" class="about-section-padding">
+       <div class="container">
+           <div class="row">
+               <div class="col-lg-4 col-md-12 col-12">
+                   <div class="about-image">
+                       <img src="static/images/usine.jpg" alt="" class="img-fluid">
+                   </div>
+               </div>
+               <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
+                   <div class="about-text">
+                       <h2> Plus de 100 ans d'histoire qui ont fait de nous <br>une référence mondiale
+
+</h2>
+                       <p>Roca a commencé son activité en 1917, en fabriquant des radiateurs en fonte pour le chauffage domestique dans son usine de Gavà (Barcelone).<br> Après les premiers radiateurs en fonte, elle complète son catalogue avec la production de chaudières et, en 1929, elle entre définitivement dans la salle de bains en commençant à fabriquer des baignoires.
+                     Toujours attentive aux changements de la société liés à la gestion de l'eau, principale ressource naturelle avec laquelle elle travaille,<br> Roca a relevé le défi de produire de la porcelaine sanitaire en 1936 et a commencé à fabriquer des robinets en 1954.
+                     Dans les années 1990, le groupe a entamé une première phase d'expansion internationale, reposant principalement sur l'ouverture de filiales et sur la signature d'accords avec des entreprises leaders sur leurs marchés.<br> Hormis le Portugal et la France, la présence commerciale a commencé à s'étendre au Royaume-Uni, en Allemagne, en Italie, au Maroc, en Argentine, au Brésil et en Chine.</p>
+                   </div>
+               </div>
+           </div>
+
+       </div>
+   </section>
+                       <section id="services" class="services section-padding">
+                           <div class="container">
+                               <div class="row">
+                                   <div class="section-header text-center pb-5">
+                                       <h2>Nos Services</h2>
+                                       <p> Chez Roca, nous concevons des produits et des solutions pour améliorer la qualité de vie des gens depuis plus de 100 ans.</p>
+
+
+                                   </div>
+                               </div>
+                           </div>
+                       </section>
+     <div class="container mt-5">
+    <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="static/images/wcc1.jpg" class="card-img-top" alt="Card Image">
+                <div class="card-body">
+                    <h5 class="card-title">WC</h5>
+                    <p class="card-text">The water closet, commonly known as the WC, stands as an epitome of modern sanitation. Designed for both functionality and comfort.</p>
+                    <a href="#" class="btn btn-warning">More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="static/images/wwcc2.jpg" class="card-img-top" alt="Card Image">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 2</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-warning">More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="static/images/wc3.jpg" class="card-img-top" alt="Card Image">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title 3</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-warning">More</a>
+                </div>
+            </div>
+        </div>
+ <div class="row mt-4">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="static/images/ko.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card Title One</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-warning">More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="static/images/baignoire.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card Title Two</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-warning">More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="static/images/robinet.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card Title Three</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-warning">More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <section id="servicess" class="services section-padding">
+     <div class="container">
+           <div class="row">
+               <div class="section-header text-center pb-5">
+                <h2>Notre Système</h2>
+                <p> Dans Roca, nous utilisons un système de tickets ou bien un système de gestion d'intervention qui sert à réserver les tickets <br>à chaque fois nous rencontrons un problème technique q'on trouve une certaine diffuculté à résoudre mais on doit toujours y attendre une réponse de la part du technicien qui va trouver la solution du coup<br>  , nous proposerons un chatbot configuré par l'AI qui sert à répondre à vos questions conçernant le problème et vous allez essayer de résoudre le problème vous meme en suivant les instructions de l'AI , en attendant une réponse à votre ticket réservé</br>.</p>
+               <p class="d-flex justify-content-center">
+               <a href="#" class="btn btn-warning mt-3">Learn More</a>
+               </p>
+               </div>
+           </div>
+     </div>
+  </section>
+ <div class="contact-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="section-title">
+						<h2><span>Our</span> contact</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<div class="contact-form">
+						<form>
+							<div class="form-group">
+								<input class="form-control" placeholder="Your Name Here" type="text">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Your Email Here" type="email">
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" cols="30" placeholder="Your Message" rows="10"></textarea>
+							</div><button class="btn" type="submit">Submit</button>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<div class="map-area">
+						<iframe
+  src="https://www.google.com/maps?q=Usine+Roca+Maroc+S.A.&output=embed"
+  width="600"
+  height="450"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="static/chat.js"></script>
+
+</body>
+</html>

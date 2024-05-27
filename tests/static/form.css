@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.text-white {
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.container {
+    background-image: url("images/baground.png");
+    height: 100vh;
+    width: 100%;
+
+    background-position: center;
+    background-size: cover;
+    color: #FFEBB2;
+}
+
+.w-50 {
+    width: 30% !important;
+    position: absolute !important;
+    top: 120px;
+    border: 2px solid cadetblue !important;
+    border-radius: 10px;
+    left: 35%;
+}
+
+.form-label {
+    font-weight: 700;
+}
+
+.btn-success {
+    background-color: beige !important;
+    color: black;
+    font-weight: bold;
+    border: none !important;
+    width: 100px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Adds some space between the button and the text */
+    margin-left: 150px;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    .w-50 {
+        width: 100% !important;
+        left: 0 !important;
+    }
+}
+@media (min-width: 992px) {
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 100%;
+    }
+}

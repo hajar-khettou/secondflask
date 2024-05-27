@@ -48,3 +48,8 @@ policies: null
 #     max_history: 5
 #     epochs: 100
 #     constrain_similarities: true
+
+cors:
+  origins: ["*"]
+  methods: ["GET", "POST"]
+  allow_headers: ["Content-Type"]

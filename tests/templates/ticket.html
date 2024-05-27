@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Form</title>
+    <link rel="stylesheet" href="static/ticket.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .right-align {
+        margin-left:1000px;
+        margin-right:10px;
+    }
+    .btn-primary {
+        padding: 10px 20px; /* Adjust padding as needed */
+        background-color: #007bff; /* Bootstrap primary color */
+        color: white; /* Text color */
+        border: none; /* Remove default border */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Cursor indicates button */
+    }
+    /* Hover effect for the button */
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="static/images/roca-logo.png" alt="Roca Logo" height="30" width="80">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('firstp') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Requests</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link"  href="{{ url_for('reservations_dashboard') }}">Responses</a>
+                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Solutions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="bootstrap-iso">
+    <h1>Ticket Reservation</h1>
+    <div class="container-fluid" style="background-color: #CDE8E5">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <form class="form-horizontal" method="post" action="/reservation" id="reservationForm">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Requester:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="name" name="name" placeholder="Enter your full name" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Email:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="email" name="email" placeholder="Enter a valid email" type="email" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="select1">Department:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="select1" name="select1" required>
+                                <option value="" disabled selected>Choose your department</option>
+                                <option value="Achat">Achat</option>
+                                <option value="RH">RH</option>
+                                <option value="Export">Export</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Back office">Back office</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Qualité">Qualité</option>
+                                <option value="Production">Production</option>
+                                <option value="Logistique">Logistique</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">Category:</label>
+                        <div class="col-sm-10">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="category" value="Software" onclick="toggleDropdowns('software')" required> Software
+                                </label>
+                                <label>
+                                    <input type="radio" name="category" value="Hardware" onclick="toggleDropdowns('hardware')" required> Hardware
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="softwareSelect" style="display:none;">
+                        <label class="control-label col-sm-2" for="software">Software:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="software" name="software">
+                                <option value="" disabled selected>Choose software</option>
+                                <option value="SAP ERP">SAP ERP</option>
+                                <option value="C4C">C4C</option>
+                                <option value="BACK OFFICE">BACK OFFICE</option>
+                                <option value="POWER BI">POWER BI</option>
+                                <option value="MDM">MDM</option>
+                                <option value="OCR">OCR</option>
+                                <option value="CITRIX">CITRIX</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="hardwareSelect" style="display:none;">
+                        <label class="control-label col-sm-2" for="hardware">Hardware:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="hardware" name="hardware">
+                                <option value="" disabled selected>Choose hardware</option>
+                                <option value="Scanner">Scanner</option>
+                                <option value="Microphone">Microphone</option>
+                                <option value="Printer">Printer</option>
+                                <option value="Headphone">Headphone</option>
+                                <option value="keyboard"> keyboard</option>
+                                <option value="Monitor">Monitor</option>
+                                <option value="Mice">Mice</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="message">Description:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="message" name="message" placeholder="Describe the problem" rows="10" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <div class="right-align">
+                           <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function toggleDropdowns(type) {
+    var softwareSelect = document.getElementById('softwareSelect');
+    var hardwareSelect = document.getElementById('hardwareSelect');
+    if (type === 'software') {
+        document.getElementById('software').setAttribute('required', 'required');
+        document.getElementById('hardware').removeAttribute('required');
+        softwareSelect.style.display = 'block';
+        hardwareSelect.style.display = 'none';
+    } else if (type === 'hardware') {
+        document.getElementById('hardware').setAttribute('required', 'required');
+        document.getElementById('software').removeAttribute('required');
+        hardwareSelect.style.display = 'block';
+        softwareSelect.style.display = 'none';
+    }
+}
+
+document.getElementById('reservationForm').addEventListener('submit', function(e) {
+    var category = document.querySelector('input[name="category"]:checked');
+    var softwareSelect = document.getElementById('software');
+    var hardwareSelect = document.getElementById('hardware');
+
+    if (!category) {
+        e.preventDefault();
+        alert('Please select a category (Software or Hardware).');
+    }
+
+    if (category.value === 'Software' && !softwareSelect.value) {
+        e.preventDefault();
+        alert('Please select a software option.');
+    }
+
+    if (category.value === 'Hardware' && !hardwareSelect.value) {
+        e.preventDefault();
+        alert('Please select a hardware option.');
+    }
+});
+</script>
+</body>
+</html>

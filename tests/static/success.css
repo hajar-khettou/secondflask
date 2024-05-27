@@ -1,0 +1,25 @@
+    body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .success-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #dff0d8;
+            border: 1px solid #d0e9c6;
+            border-radius: 5px;
+            color: #3c763d;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
