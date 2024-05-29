@@ -173,8 +173,9 @@ def signin():
         password = request.form.get('passwordInput')
         try:
             user = auth.sign_in_with_email_and_password(email, password)
-            id_token = user.get('idToken')
-            email_verified = user['emailVerified']
+            id_token = user['idToken']
+            user_info = auth.get_account_info(id_token)
+            email_verified = user_info['users'][0]['emailVerified']
             if id_token and email_verified:
                 session['idToken'] = id_token
                 session['user_id'] = user['localId']
@@ -188,6 +189,7 @@ def signin():
         except Exception as e:
             flash(f"Login failed: {str(e)}", "error")
     return render_template('signin.html')
+
 
 
 
